@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="js/two.min.js"></script>
+  </head>
+  <body>
+    <script src="./js/indie.js"></script>
+  </body>
+</html>

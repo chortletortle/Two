@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="js/two.min.js"></script>
+  </head>
+  <body>
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script>
+    //var elem = document.getElementById('draw-shapes').children[0];
+    var two = new Two({ width: 800, height: 800 }).appendTo(document.body);
+    var background = two.makeRectangle(two.width/2, two.height/2, two.width, two.height);
+
+    var orX = two.width/2;
+    var orY = two.height/2;
+    background.fill= 'rgba(255, 255, 255)';
+
+    var circle = two.makeCircle(orX, orY, 50);
+    var cir1RGB = [50, 0, 100];
+    circle.fill = 'rgb('+ cir1RGB.toString()+')';
+
+    // Groups can take an array of shapes and/or groups.
+    var group = two.makeGroup(circle);
+
+    window.addEventListener("keydown", checkKeyPressed, false);
+    function checkKeyPressed(e) {
+      if(e.keyCode == 32){
+       // user has pressed space
+       dirmult = dirmult*-1;
+      }
+    }
+
+    function moveTo(x, y, obj){
+      var atX = false;
+      var atY = false;
+      while (!atX || !atY){
+          if (x == obj.translation.x){
+            atX = true;
+          } else if (x < obj.translation.x){
+            obj.translation.x -= .1;
+          } else {
+            obj.translation.x += .1;
+          }
+          if (y == obj.translation.y){
+            atY = true;
+          } else if (y < obj.translation.y){
+            obj.translation.y -= .1;
+          } else {
+            obj.translation.y += .1;
+          }
+      }
+    }
+    var b = true;
+    two.bind('update', function(frameCount) {
+      // This code is called everytime two.update() is called.
+      // Effectively 60 times per second.
+      //var t = (1 - group.scale) * 0.125 *mult;
+      //group.scale += t;
+      //group.rotation += 1/60;
+       /*if (b == true){
+        moveTo(0, 0, circle);
+        b = false;
+       }*/
+      
+      
+      
+
+      //var addone = new Two.Vector(x, y);
+      //circle.translation.addSelf(addone);
+    }).play();  
+
+    // Finally, start the animation loop
+    two.update();
+
+
+    </script>
+  </body>
+</html>
